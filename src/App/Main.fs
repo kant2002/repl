@@ -781,12 +781,12 @@ let private problemsPanel (isExpanded : bool) (errors : Monaco.Editor.IMarkerDat
     let title =
         if errors.Length = 0 then
             Html.span [
-                prop.text "Problems"
+                prop.text "Проблеми"
             ]
         else
             Html.span [
                 prop.children [
-                    Html.text  "Problems: "
+                    Html.text  "Проблеми: "
                     Html.span [
                         prop.style [
                             style.marginLeft (length.em 0.5)
@@ -1005,7 +1005,7 @@ let private outputTabs (activeTab : OutputTab) dispatch =
                     )
                     prop.children [
                         Html.a [
-                            prop.text "Live sample"
+                            prop.text "Інтерактивний приклад"
                         ]
                     ]
                 ]
@@ -1018,7 +1018,7 @@ let private outputTabs (activeTab : OutputTab) dispatch =
                     )
                     prop.children [
                         Html.a [
-                            prop.text "Code"
+                            prop.text "Код"
                         ]
                     ]
                 ]

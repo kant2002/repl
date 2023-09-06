@@ -129,15 +129,15 @@ GITHUB
       SourceLink.Create.CommandLine
       Unquote
   remote: fable-compiler/fable-promise
-    FULLPROJECT (14eca483d664dce5aebbe50fb92a536a7c1ffe53)
+    FULLPROJECT (dac50fcf2ed27d1f0b1ed0fab5a3e721fc2efefc)
   remote: alfonsogarciacaro/Feliz.Engine
     FULLPROJECT (61152aebd6c0b7878bfc4db05e2e10724b434a3e)
   remote: alfonsogarciacaro/Feliz.Snabbdom
     FULLPROJECT (7b28ccbceebcc9b66a8cb67aab89b7ae9576dbfb)
   remote: davedawkins/Feliz.Engine.Bulma
-    FULLPROJECT (0df54855ac3464a432cd207412ab66e650a87d77)
+    FULLPROJECT (9504b9d5a43f5c3ef84086815076ebed1948b162)
   remote: davedawkins/Sutil
-    FULLPROJECT (343bc31867127638a79afede0dcaa97ca56fa264)
+    FULLPROJECT (576fe8a0f766ad4989e40d928b5b5a13706efe62)
 GROUP netcorebuild
 NUGET
   remote: https://www.nuget.org/api/v2

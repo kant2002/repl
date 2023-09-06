@@ -1154,11 +1154,11 @@ let asDomNode (element:SutilNode) (ctx : BuildContext) : Node =
     //let result = (ctx |> build element)
     match element.collectDomNodes()  with
     | [n] -> n
-    | [] -> errorNode ctx.Parent $"Error: Empty node from {element} #{element.Id}"
+    | [] -> errorNode ctx.Parent $"Помилка: Порожній вузол із {element} #{element.Id}"
     | xs ->
         let doc = ctx.Document
         let tmpDiv = doc.createElement("div")
-        let en = errorNode (DomNode tmpDiv) "'fragment' not allowed as root for 'each' blocks"
+        let en = errorNode (DomNode tmpDiv) "'fragment' не дозволений як кореневий для 'each' блоків"
         DomEdit.appendChild tmpDiv en
         ctx.Parent.AppendChild tmpDiv
         xs |> List.iter (fun x -> DomEdit.appendChild tmpDiv x)
@@ -1392,7 +1392,7 @@ let computedStyleOpacity e =
         float (Window.getComputedStyle(e).opacity)
     with
     | _ ->
-        log(sprintf "parse error: '%A'" (Window.getComputedStyle(e).opacity))
+        log(sprintf "помилка аналізу: '%A'" (Window.getComputedStyle(e).opacity))
         1.0
 
 let computedStyleTransform node =

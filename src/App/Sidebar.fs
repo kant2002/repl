@@ -274,11 +274,11 @@ let view (isCompiling : bool) (model: Model) dispatch =
     let widgets =
         [
             if model.IsExpanded then
-                "General", Fa.Solid.Th, Widgets.General.viewExpanded isCompiling model.Options.GistToken model.General (GeneralMsg >> dispatch), None
-            "Samples", Fa.Solid.Book, Widgets.Samples.view model.Samples (SamplesMsg >> dispatch), Some 500
-            "Options", Fa.Solid.Cog, Widgets.Options.view model.Options (OptionsMsg >> dispatch), None
-            "Statistics", Fa.Regular.Clock, Widgets.Stats.view model.Statistics, None
-            "About", Fa.Solid.Info, Widgets.About.view model.FableVersion, None
+                "Загальний", Fa.Solid.Th, Widgets.General.viewExpanded isCompiling model.Options.GistToken model.General (GeneralMsg >> dispatch), None
+            "Приклади", Fa.Solid.Book, Widgets.Samples.view model.Samples (SamplesMsg >> dispatch), Some 500
+            "Опції", Fa.Solid.Cog, Widgets.Options.view model.Options (OptionsMsg >> dispatch), None
+            "Статистика", Fa.Regular.Clock, Widgets.Stats.view model.Statistics, None
+            "О REPL", Fa.Solid.Info, Widgets.About.view model.FableVersion, None
         ]
         |> List.map (renderWidgets model dispatch)
 

@@ -10,14 +10,14 @@ let view fableVersion =
         Html.div ("Fable: " + fableVersion)
         Html.br [ ]
         Html.a [
-            prop.href "https://github.com/fable-compiler/repl/issues/new"
+            prop.href "https://github.com/kant2002/repl/issues/new"
             prop.children [
                 Html.span [
                     text.isItalic
                     prop.style [
                         style.textDecoration.underline
                     ]
-                    prop.text "Found a bug ?"
+                    prop.text "Знайшов помилку ?"
                 ]
             ]
         ]

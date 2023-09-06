@@ -301,7 +301,7 @@ let view model dispatch =
 
                                 prop.onClick fetchSamplesMsg
                                 prop.children [
-                                    Html.span "Refresh samples"
+                                    Html.span "Оновити приклади"
                                 ]
                             ]
                         ]
@@ -315,4 +315,3 @@ let view model dispatch =
 #endif
 
     Bulma.menu menus
-    

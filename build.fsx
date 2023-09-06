@@ -40,7 +40,7 @@ let METADATA_LIB, STANDALONE_DIST, STANDALONE_SRC =
     | None ->
         printfn "Using fable-metadata/fable-standalone packages from node_modules..."
         printfn "To use local pacakges, set LOCAL_PKG env var and run `./build.sh standalone` in sibling Fable repository\n"
-        "node_modules/fable-metadata/lib", "node_modules/fable-standalone/dist", "node_modules/fable-standalone/src"
+        "node_modules/@kant2002/fable-metadata/lib", "node_modules/@kant2002/fable-standalone/dist", "node_modules/@kant2002/fable-standalone/src"
 
 module Util =
 
@@ -109,7 +109,7 @@ let restore = BuildTask.create "Restore" [ clean ] {
 }
 
 let npmInstall = BuildTask.create "NpmInstall" [ restore ] {
-    Npm.install id
+    Npm.Custom "ci" |> ignore
 }
 
 let copyModules = BuildTask.create "CopyModules" [ npmInstall ] {

@@ -56,9 +56,9 @@ module ObservableStore =
             DOM.dispatch Window.document DOM.Event.UpdateStore {| Value = v |}
 
         let notifyMakeStore s =
-            if storeToId.ContainsKey(s) then failwith "Store is already registered!"
+            if storeToId.ContainsKey(s) then failwith "Склад вже зареєстровано!"
             let id = nextId
-            log $"make store #{id}"
+            log $"зробити склад #{id}"
             nextId <- nextId + 1
             idToStore.[id] <- s
             storeToId.[s] <- id
@@ -72,13 +72,13 @@ module ObservableStore =
             //        failwith "Store is unknown to registry"
 
             let id = storeToId.[s]
-            log($"dispose store #{id}")
+            log($"утилізувати склад #{id}")
             try
                 idToStore.Remove(id) |> ignore
                 storeToId.Remove(s) |> ignore
                 //disposed.[s] <- id
             with
-            | x -> Logging.error $"disposing store {id}: {x.Message}"
+            | x -> Logging.error $"утилізувати склад {id}: {x.Message}"
 
         let getStoreById id : IStoreDebugger =
             (idToStore.[id] :?> IStore<obj>).Debugger
@@ -137,7 +137,7 @@ module ObservableStore =
             let id = uid
             uid <- uid + 1
 
-            Logging.log "store" $"subscribe {id}"
+            Logging.log "store" $"підписатися {id}"
 
             subscribers.Add(id, observer)
 
@@ -148,7 +148,7 @@ module ObservableStore =
             observer.OnNext(model())
 
             Helpers.disposable <| fun () ->
-                Logging.log "store" $"unsubscribe {id}"
+                Logging.log "store" $"відписатися {id}"
                 subscribers.Remove(id) |> ignore
 
         member this.Dispose() =

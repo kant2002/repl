@@ -99,13 +99,13 @@ let viewCollapsed (isCompiling : bool) (gistToken : string option) (model: Model
         prop.className "actions-area"
         prop.children [
 
-            actionButton "Compile and run (Alt+Enter)" StartCompile compileIcon
-            actionButton "Refresh the live sample (without compiling)" RefreshIframe [ Fa.i [ Fa.Solid.Redo ] [ ] ]
-            actionButton "Reset the REPL, you will lose your current work" AskReset [ Fa.i [ Fa.Solid.TrashAlt ] [ ] ]
-            actionButton "Share using the URL" Share [ Fa.i [ Fa.Solid.Share ] [ ] ]
+            actionButton "Скомпілювати та запустити (Alt+Enter)" StartCompile compileIcon
+            actionButton "Оновити інтеракцивний приклад (без компіляції)" RefreshIframe [ Fa.i [ Fa.Solid.Redo ] [ ] ]
+            actionButton "Скиньте REPL, ви втратите поточну роботу" AskReset [ Fa.i [ Fa.Solid.TrashAlt ] [ ] ]
+            actionButton "Поділіться за допомогою URL-адреси" Share [ Fa.i [ Fa.Solid.Share ] [ ] ]
             match gistToken with
             | Some _ ->
-                actionButton "Share to Gist" ShareToGist [ Fa.i [ Fa.Brand.Github ] [ ] ]
+                actionButton "Поділитися через Gist" ShareToGist [ Fa.i [ Fa.Brand.Github ] [ ] ]
             | None -> Html.none
 
         ]
@@ -150,13 +150,13 @@ let viewExpanded (isCompiling : bool) (gistToken : string option) (model: Model)
         match model.ResetState with
         | Default ->
             Html.div [
-                renderItem "Compile and run" isCompiling StartCompile Fa.Solid.Play
-                renderItem "Refresh the live sample" isCompiling RefreshIframe Fa.Solid.Redo
-                renderItem "Click here to reset" false AskReset Fa.Solid.TrashAlt
-                renderItem "Share using the URL" false Share Fa.Solid.Share
+                renderItem "Скомпілювати та запустити" isCompiling StartCompile Fa.Solid.Play
+                renderItem "Оновити інтеракцивний приклад" isCompiling RefreshIframe Fa.Solid.Redo
+                renderItem "Натисніть тут, щоб скинути" false AskReset Fa.Solid.TrashAlt
+                renderItem "Поділіться за допомогою URL-адреси" false Share Fa.Solid.Share
                 match gistToken with
                 | Some _ ->
-                    renderItem "Share to Gist" false ShareToGist Fa.Brand.Github
+                    renderItem "Поділитися через Gist" false ShareToGist Fa.Brand.Github
                 | None ->
                     Html.none
             ]
@@ -165,7 +165,7 @@ let viewExpanded (isCompiling : bool) (gistToken : string option) (model: Model)
             Bulma.field.div [
                 Bulma.help [
                     color.isWarning
-                    prop.text "Please, confirm to reset"
+                    prop.text "Підтвердьте, щоб скинути"
                 ]
 
                 Bulma.field.div [
@@ -179,7 +179,7 @@ let viewExpanded (isCompiling : bool) (gistToken : string option) (model: Model)
                                     Bulma.icon [
                                         Fa.i [ Fa.Solid.Check ] [ ]
                                     ]
-                                    Html.span "Confirm"
+                                    Html.span "Підтвердити"
                                 ]
                             ]
                         ]
@@ -192,7 +192,7 @@ let viewExpanded (isCompiling : bool) (gistToken : string option) (model: Model)
                                     Bulma.icon [
                                         Fa.i [ Fa.Solid.Times ] [ ]
                                     ]
-                                    Html.span "Cancel"
+                                    Html.span "Скасувати"
                                 ]
                             ]
                         ]
@@ -223,7 +223,7 @@ let viewModalResetConfirmation (model: Model) dispatch =
                             prop.children [
                                 Html.span [
                                     prop.className "reset-confirmation-modal-content-text"
-                                    prop.text "Please, confirm to reset"
+                                    prop.text "Підтвердьте, щоб скинути"
                                 ]
 
                                 Html.div [
@@ -243,7 +243,7 @@ let viewModalResetConfirmation (model: Model) dispatch =
                                                                         Fa.i [ Fa.Solid.Check ] [ ]
                                                                     ]
 
-                                                                    Html.span "Confirm"
+                                                                    Html.span "Підтвердити"
                                                                 ]
                                                             ]
                                                         ]
@@ -257,7 +257,7 @@ let viewModalResetConfirmation (model: Model) dispatch =
                                                                         Fa.i [ Fa.Solid.Times ] [ ]
                                                                     ]
 
-                                                                    Html.span "Cancel"
+                                                                    Html.span "Скасувати"
                                                                 ]
                                                             ]
                                                         ]

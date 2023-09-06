@@ -15,7 +15,8 @@ module Literals =
         // "http://localhost:8080"
         Browser.Dom.window.location.href
 #else
-        "https://fable.io/repl/"
+        Browser.Dom.window.location.href
+        //"https://fable.io/repl/"
 #endif
     printfn $"HOST {HOST}"
 

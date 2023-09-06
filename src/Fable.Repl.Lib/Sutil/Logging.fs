@@ -11,7 +11,7 @@ let mutable initialized = false
 
 let init =
     if not initialized then
-        console.log("logging:init defaults")
+        console.log("протоколювання:ініціалізація початкових значень")
         initialized <- true
         enabled.["store"] <- false
         enabled.["trans"] <- false
@@ -22,10 +22,10 @@ let init =
         enabled.["tick" ] <- false
 
 let initWith states =
-    console.log("logging:init with states")
+    console.log("протоколювання:ініціалізація зі станами")
     initialized <- true
     for (name,state) in states do
-        console.log($"logging:{name}: {state}")
+        console.log($"протоколювання:{name}: {state}")
         enabled.[name] <- state
 
 let timestamp() =
@@ -36,8 +36,7 @@ let log source (message : string) =
         console.log(sprintf "%s: %s: %s" (timestamp()) source message)
 
 let warning (message : string) =
-    console.log(sprintf "warning: %s" message)
+    console.log(sprintf "попередження: %s" message)
 
 let error (message : string) =
-    console.log(sprintf "error: %s" message)
-
+    console.log(sprintf "помилка: %s" message)

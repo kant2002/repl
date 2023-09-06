@@ -6,9 +6,9 @@ open Browser.Types
 open Thoth.Json
 
 type Position =
-    { 
+    {
         X : float
-        Y : float 
+        Y : float
     }
 
 [<RequireQualifiedAccess>]
@@ -63,13 +63,13 @@ module Cmd =
                             |> Decode.map args.ConsoleErrorCor
                         | x ->
                             // Discard messages we don't know how to handle it
-                            sprintf "`%A` is not a known value for an iframe message" x
+                            sprintf "`%A` не є відомим значенням для повідомлення iframe" x
                             |> Decode.fail
                     )
                 Decode.fromValue "$" iframeMessageDecoder ev?data
                 |> function
                     | Ok msg -> dispatch msg
-                    | Error error -> 
+                    | Error error ->
                         // We don't have an easy way to discard false positive
                         // so for now, only log when in DEBUG mode
                         #if DEBUG

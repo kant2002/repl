@@ -26,10 +26,10 @@ let view (model : Model) =
         Bulma.table [
             Html.thead [
                 Html.tr [
-                    Html.th "Steps"
+                    Html.th "Етапи"
                     Html.th [
                         prop.className "has-text-right"
-                        prop.text "ms"
+                        prop.text "мс"
                     ]
                 ]
             ]

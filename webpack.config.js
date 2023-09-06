@@ -119,7 +119,8 @@ module.exports = {
         },
     output: {
         path: path.join(__dirname, CONFIG.outputDir),
-        filename: isProduction ? '[name].[hash].js' : '[name].js',
+        filename: isProduction ? '[name].[contenthash].js' : '[name].js',
+        chunkFilename: "[name].[contenthash].js",
         // Fix for HMR + worker: https://github.com/webpack/webpack/issues/6642#issuecomment-370222543
         globalObject: 'self',
     },
@@ -144,16 +145,19 @@ module.exports = {
             // }),
         ])
         : commonPlugins.concat([
-            new webpack.HotModuleReplacementPlugin(),
+            //new webpack.HotModuleReplacementPlugin(),
         ]),
     devServer: {
-        public: getDevServerUrl(),
-        publicPath: "/",
-        contentBase: CONFIG.assetsDir,
+        //public: getDevServerUrl(),
+        devMiddleware: {
+            publicPath: "/",
+        },
+        static: {
+            directory: CONFIG.assetsDir,
+        },
         port: CONFIG.devServerPort,
         proxy: CONFIG.devServerProxy,
         hot: true,
-        inline: true,
         host: '0.0.0.0',
         allowedHosts: ['localhost', '.gitpod.io']
     },
@@ -161,7 +165,11 @@ module.exports = {
         rules: [
             {
                 test: /\.worker\.js$/,
-                use: "worker-loader"
+                loader: "worker-loader",
+                options: {
+                  filename: isProduction ? '[name].[contenthash].worker.js' : '[name].worker.js',
+                  chunkFilename: "[id].[contenthash].worker.js",
+                },
             },
             {
                 test: /\.js$/,
@@ -177,8 +185,8 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            hmr: true,
-                            hot: true
+                            //hmr: true,
+                            //hot: true
                         }
                     },
                     'css-loader',
@@ -189,8 +197,13 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?.*$|$)/,
+                test: /\.(png|jpg|jpeg|gif|svg)(\?.*$|$)/,
                 use: ["file-loader"]
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot)(\?.*$|$)/,
+                type: 'asset/resource',
+                dependency: { not: ['url'] },
             }
         ]
     }

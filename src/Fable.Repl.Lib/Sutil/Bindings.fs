@@ -99,7 +99,7 @@ let bindFragment<'T>  (store : IObservable<'T>)  (element: 'T -> SutilElement) =
         try
             node <- build (element(next)) (bindCtx |> ContextHelpers.withReplace (node,vnode.NextDomNode))
         with
-        | x -> Logging.error $"Exception in bind: {x.Message} parent {ctx.Parent} node {node.ToString()} node.Parent "
+        | x -> Logging.error $"Помилка прив'язки: {x.Message} батькового {ctx.Parent} вузла {node.ToString()} node.Parent "
     )
 
     vnode.SetDispose (Helpers.unsubify disposable)
@@ -119,7 +119,7 @@ let bindFragment2<'A,'B> (a : IObservable<'A>) (b : IObservable<'B>)  (element: 
         try
             node <- build (element(next)) (bindCtx |> ContextHelpers.withReplace (node,vnode.NextDomNode))
         with
-        | x -> Logging.error $"Exception in bind: {x.Message}"
+        | x -> Logging.error $"Помилка прив'язки: {x.Message}"
     )
 
     vnode.SetDispose (Helpers.unsubify d)
@@ -608,5 +608,3 @@ module BindApi =
         static member selected<'T when 'T : equality>  (store : IStore<'T list>) = bindSelectMultiple store
         static member selected<'T when 'T : equality>  (store : IStore<'T option>) = bindSelectOptional store
         static member selected<'T when 'T : equality>  (store : IStore<'T>) = bindSelectSingle store
-
-

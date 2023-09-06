@@ -147,7 +147,7 @@ let private fontSizeOption (label : string) (fontSize : float) =
 
 let inline private fontSizeSetting (fontSize : float) dispatch =
     Bulma.field.div [
-        Bulma.label "Editors font size"
+        Bulma.label "Розмір шрифта редактора"
 
         Bulma.control.div [
             Bulma.select [
@@ -157,9 +157,9 @@ let inline private fontSizeSetting (fontSize : float) dispatch =
                     ev.Value |> float |> ChangeFontSize |> dispatch
                 )
                 prop.children [
-                    fontSizeOption "Small" 12.
-                    fontSizeOption "Medium" 14.
-                    fontSizeOption "Large" 16.
+                    fontSizeOption "Малий" 12.
+                    fontSizeOption "Середній" 14.
+                    fontSizeOption "Великий" 16.
                 ]
             ]
         ]
@@ -173,7 +173,7 @@ let private fontFamilyOption (label : string) (fontFamily : string) =
 
 let inline private fontFamilySetting (fontFamily : string) dispatch =
     Bulma.field.div [
-        Bulma.label "Editors font family"
+        Bulma.label "Сімейство шрифта редактора"
 
         Bulma.control.div [
             Bulma.select [
@@ -198,7 +198,7 @@ let private languageSetting (language : string) dispatch =
         ]
 
     Bulma.field.div [
-        Bulma.label "Language"
+        Bulma.label "Мова"
 
         Bulma.control.div [
             Bulma.select [
@@ -240,13 +240,13 @@ let private switchOption (label : string) isActive dispatch msg =
     ]
 
 let inline private optimizeSetting (model: Model) dispatch =
-    switchOption "Optimize (experimental)" model.Optimize dispatch ToggleOptimize
+    switchOption "Оптимизувати (експеріментально)" model.Optimize dispatch ToggleOptimize
 
 let private defineDebugSetting (model: Model) dispatch =
-    switchOption "Define DEBUG" model.DefineDebug dispatch ToggleDefineDebug
+    switchOption "Визначити DEBUG" model.DefineDebug dispatch ToggleDefineDebug
 
 let private typedArraysSetting (model: Model) dispatch =
-    switchOption "Typed Arrays" model.TypedArrays dispatch ToggleTypedArrays
+    switchOption "Типізовані масиви" model.TypedArrays dispatch ToggleTypedArrays
 
 let inline private gistTokenSetting (token : string option) (tokenField : string) dispatch =
     match token with
@@ -255,7 +255,7 @@ let inline private gistTokenSetting (token : string option) (tokenField : string
             Bulma.button.a [
                 prop.onClick (fun _ -> dispatch DeleteToken)
                 button.isFullWidth
-                prop.text "Delete gist token"
+                prop.text "Видалити токен gist"
             ]
         ]
 
@@ -263,11 +263,11 @@ let inline private gistTokenSetting (token : string option) (tokenField : string
         Bulma.field.div [
             Bulma.label [
                 prop.children [
-                    Html.text "Github token"
+                    Html.text "Github токен"
                     Html.a [
                         prop.target "_blank"
                         prop.href "https://github.com/settings/tokens/new?description=fable-repl&scopes=gist"
-                        prop.text "  (Create)"
+                        prop.text "  (Створити)"
                     ]
                 ]
             ]
@@ -277,13 +277,13 @@ let inline private gistTokenSetting (token : string option) (tokenField : string
                 prop.children [
                     Bulma.input.password [
                         prop.onChange (fun (ev : Types.Event) -> ev.Value |> ChangeGistToken |> dispatch)
-                        prop.placeholder "Token with gist scope"
+                        prop.placeholder "Токен із gist скоупом"
                     ]
 
                     if tokenField.Length = 40 then
                         Bulma.button.a [
                             prop.onClick (fun _ -> dispatch SaveToken)
-                            prop.text "Save"
+                            prop.text "Зберегти"
                         ]
                 ]
             ]
